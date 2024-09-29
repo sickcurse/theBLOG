@@ -1,0 +1,26 @@
+<div class="post card">
+  <div class="card-header">
+    <h2>Create New Post</h2>
+  </div>
+  <form id="new-post-form" class="card-body">
+    <label class="form-label" for="post-title">Title</label>
+    <input type="text" name="post-title" class="form-input" required />
+
+    <label class="form-label" for="post-body">Content</label>
+    <textarea name="post-body" class="form-input" required></textarea>
+    <p id="char-count">0 characters</p>
+
+    <button type="submit" class="btn">Create</button>
+  </form>
+</div>
+
+<script src="/js/newPost.js"></script>
+<script>
+  // Character counter for post body
+  const postBodyInput = document.querySelector('textarea[name="post-body"]');
+  const charCount = document.getElementById('char-count');
+
+  postBodyInput.addEventListener('input', function () {
+    charCount.textContent = `${this.value.length} characters`;
+  });
+</script>
