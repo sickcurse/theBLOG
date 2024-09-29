@@ -518,4 +518,23 @@
       flex: 0 0 100%;
     }
   }
-  
+  /* Styles for the comment section */
+.comment {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.comment-body {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.comment-meta {
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+}
