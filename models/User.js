@@ -15,8 +15,13 @@ User.init(
       allowNull: false,
     },
   },
+
+
+
   {
     sequelize,
+    freezeTableName: true, 
+    underscored: true,
     modelName: 'user',
   }
 );
