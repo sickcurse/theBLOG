@@ -1,43 +1,17 @@
 const router = require('express').Router();
-const { Comment, User, Post } = require('../../models');  // Import models
-const { apiGuard } = require('../../utils/authGuard');   // Import guard middleware
+const { Comment } = require('../../models/');
+const { apiGuard } = require('../../utils/authGuard');
 
-
-class Comment extends Model {}
-
-Comment.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    body: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'user',  // Links to User model
-        key: 'id',
-      },
-    },
-    post_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'post',  // Links to Post model
-        key: 'id',
-      },
-    },
-  },
-  {
-    sequelize,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'comment',
+router.post('/', apiGuard, async (req, res) => {
+  try {
+    const newComment = await Comment.create({
+      ...req.body,
+      userId: req.session.user_id,
+    });
+    res.json(newComment);
+  } catch (err) {
+    res.status(500).json(err);
   }
-);
+});
 
-module.exports = Comment;
+module.exports = router;
